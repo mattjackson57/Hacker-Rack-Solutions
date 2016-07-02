@@ -1,0 +1,79 @@
+# Connected cell in a grid
+
+https://www.hackerrank.com/challenges/connected-cell-in-a-grid
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+    
+static int cols;
+static int rows;
+static Scanner in;  
+static int result;
+static int[] array
+    
+    public static void main(String[] args) {
+        in = new Scanner(System.in);
+        rows = in.nextInt();
+        in.nextLine();
+        cols = in.nextInt();
+        in.nextLine();
+        array = makeArray();
+        Queue<Integer> q = new LinkedList<>();
+        Set<Integers> used = new HashSet<>();
+        size = 0;
+        
+        for (int i = 0; i < rows * cols; i++)
+            {
+            if (array[i] == 1 )
+                {
+                q.add(i);
+            }
+            
+            
+        }
+        
+        while (q.peek() != null)
+            {
+            int i = q.poll();
+            if ( used.conatains(i))
+                {
+                continue;
+            }
+            else
+                {
+                used.add(i);
+                int size = findRegion(i);
+                if (size > result)
+                    {
+                    result = size;
+                }
+            }
+        }
+        
+    }
+    
+    public static int findRegion(int i){
+        Queue<Integer> connected = new LinkedList<>();
+        int[] connectedPositions = {(-cols -1),(-cols),(-cols +1),
+                                    -1, 1, (cols -1),(cols ),(cols + 1)};
+        for (int position : connectedPositions)
+            {
+            try{
+                connected.add(array[i + position])
+            }
+            catch (IndexOutOfBoundsException e) {}
+        }
+    }
+    
+    public static int[] makeArray(){
+        int[] array = new int[rows * cols];
+        for (int i = 0; i < rows * cols; i++)
+            {
+            int next = in.nextInt();
+            array[i] = next;   
+        }
+        return array;
+    }
+}
