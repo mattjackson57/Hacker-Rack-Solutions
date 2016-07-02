@@ -1,0 +1,44 @@
+# Sherlock and pairs
+
+https://www.hackerrank.com/contests/101feb14/challenges/sherlock-and-pairs
+
+Solution
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int cases = in.nextInt();
+        in.nextLine();
+        for (int i = 0 ; i < cases; i++ )
+            {
+            int size = in.nextInt();
+            List<Integer> list = new ArrayList<>();
+            Map<Integer, Integer> map = new HashMap<>();
+            int results = 0;
+            
+            for (int m = 0; m < size; m++)
+                {
+                int next = in.nextInt();
+                if (map.containsKey(next))
+                    {
+                    map.put(next, map.get(next) + 1);
+                }
+                else
+                    {
+                    map.put( next, 1);
+                }
+            } 
+            
+            for (int key : map.keySet())
+                {
+                    long matches = map.get(key);
+                    results += matches * (matches-1);
+            }
+        System.out.println(results);
+        }
+    }
+}
